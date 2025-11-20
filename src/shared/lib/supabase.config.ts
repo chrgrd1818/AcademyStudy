@@ -48,7 +48,7 @@ export async function uploadQuizMedia(file: File, path: string) {
             upsert: false
         });
 
-    if (error) throw error;
+    if (error || !data) throw error || new Error('Upload failed');
     return getQuizMediaUrl(data.path);
 }
 
@@ -62,7 +62,7 @@ export async function uploadAvatar(userId: string, file: File) {
             upsert: true
         });
 
-    if (error) throw error;
+    if (error || !data) throw error || new Error('Upload failed');
     return getAvatarUrl(userId);
 }
 
