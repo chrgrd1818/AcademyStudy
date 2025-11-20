@@ -48,102 +48,80 @@ export async function uploadQuizMedia(file: File, path: string) {
             upsert: false
         });
 
-    if (error) throw error;
-    return getQuizMediaUrl(data.path);
-}
+    // Get current user
+    export async function getCurrentUser() {
+        const { data: { user }, error } = await supabase.auth.getUser();
+        if (error) throw error;
+        return user;
+    }
 
-// Upload user avatar
-export async function uploadAvatar(userId: string, file: File) {
-    const filePath = `${userId}/avatar.jpg`;
-    const { data, error } = await supabase.storage
-        .from('user-avatars')
-        .upload(filePath, file, {
-            cacheControl: '3600',
-            upsert: true
-        });
+    // Get current user profile with role
+    export async function getCurrentProfile() {
+        const user = await getCurrentUser();
+        if (!user) return null;
 
-    if (error) throw error;
-    return getAvatarUrl(userId);
-}
+        const { data, error } = await supabase
+            .from('profiles')
+            .select('*')
+            .eq('id', user.id)
+            .single();
 
-/**
- * AUTH HELPER FUNCTIONS
- */
+        if (error) throw error;
+        return data;
+    }
 
-// Get current user
-export async function getCurrentUser() {
-    const { data: { user }, error } = await supabase.auth.getUser();
-    if (error) throw error;
-    return user;
-}
-
-// Get current user profile with role
-export async function getCurrentProfile() {
-    const user = await getCurrentUser();
-    if (!user) return null;
-
-    const { data, error } = await supabase
-        .from('profiles')
-        .select('*')
-        .eq('id', user.id)
-        .single();
-
-    if (error) throw error;
-    return data;
-}
-
-// Sign in with email/password
-export async function signIn(email: string, password: string) {
-    const { data, error } = await supabase.auth.signInWithPassword({
-        email,
-        password
-    });
-
-    if (error) throw error;
-    return data;
-}
-
-// Sign up with email/password
-export async function signUp(email: string, password: string, fullName: string) {
-    // 1. Create auth user
-    const { data: authData, error: authError } = await supabase.auth.signUp({
-        email,
-        password
-    });
-
-    if (authError) throw authError;
-    if (!authData.user) throw new Error('No user returned from signup');
-
-    // 2. Create profile (with trigger or manual insert)
-    const { error: profileError } = await supabase
-        .from('profiles')
-        .insert({
-            id: authData.user.id,
+    // Sign in with email/password
+    export async function signIn(email: string, password: string) {
+        const { data, error } = await supabase.auth.signInWithPassword({
             email,
-            full_name: fullName,
-            role: 'player' // Default role
+            password
         });
 
-    if (profileError) throw profileError;
+        if (error) throw error;
+        return data;
+    }
 
-    return authData;
-}
+    // Sign up with email/password
+    export async function signUp(email: string, password: string, fullName: string) {
+        // 1. Create auth user
+        const { data: authData, error: authError } = await supabase.auth.signUp({
+            email,
+            password
+        });
 
-// Sign out
-export async function signOut() {
-    const { error } = await supabase.auth.signOut();
-    if (error) throw error;
-}
+        if (authError) throw authError;
+        if (!authData.user) throw new Error('No user returned from signup');
 
-// Sign in with Google
-export async function signInWithGoogle() {
-    const { data, error } = await supabase.auth.signInWithOAuth({
-        provider: 'google',
-        options: {
-            redirectTo: `${window.location.origin}/auth/callback`
-        }
-    });
+        // 2. Create profile (with trigger or manual insert)
+        const { error: profileError } = await supabase
+            .from('profiles')
+            .insert({
+                id: authData.user.id,
+                email,
+                full_name: fullName,
+                role: 'player' // Default role
+            });
 
-    if (error) throw error;
-    return data;
-}
+        if (profileError) throw profileError;
+
+        return authData;
+    }
+
+    // Sign out
+    export async function signOut() {
+        const { error } = await supabase.auth.signOut();
+        if (error) throw error;
+    }
+
+    // Sign in with Google
+    export async function signInWithGoogle() {
+        const { data, error } = await supabase.auth.signInWithOAuth({
+            provider: 'google',
+            options: {
+                redirectTo: `${window.location.origin}/auth/callback`
+            }
+        });
+
+        if (error) throw error;
+        return data;
+    }
