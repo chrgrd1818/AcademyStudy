@@ -1,6 +1,15 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import { getCurrentProfile } from '../shared/lib/supabase.config'
 
+// Extend route meta type
+declare module 'vue-router' {
+    interface RouteMeta {
+        requiresAuth?: boolean
+        zone?: string
+        requiresRole?: string
+    }
+}
+
 // Public views
 import LandingView from '../views/public/LandingView.vue'
 import CatalogView from '../views/public/CatalogView.vue'
@@ -90,7 +99,7 @@ const router = createRouter({
 })
 
 // Authentication guard
-router.beforeEach(async (to, from, next) => {
+router.beforeEach(async (to, _from, next) => {
     const requiresAuth = to.matched.some(record => record.meta.requiresAuth)
 
     if (requiresAuth) {
