@@ -1,5 +1,5 @@
 <template>
-  <div>Team Dashboard (placeholder)</div>
+  <div>{{ $t('leader.teamDashboard.placeholder') }}</div>
 </template>
 
 <script setup lang="ts">

@@ -48,27 +48,9 @@ export async function uploadQuizMedia(file: File, path: string) {
             upsert: false
         });
 
-    if (error || !data) throw error || new Error('Upload failed');
-    return getQuizMediaUrl(data.path);
+    if (error) throw error;
+    return data;
 }
-
-// Upload user avatar
-export async function uploadAvatar(userId: string, file: File) {
-    const filePath = `${userId}/avatar.jpg`;
-    const { data, error } = await supabase.storage
-        .from('user-avatars')
-        .upload(filePath, file, {
-            cacheControl: '3600',
-            upsert: true
-        });
-
-    if (error || !data) throw error || new Error('Upload failed');
-    return getAvatarUrl(userId);
-}
-
-/**
- * AUTH HELPER FUNCTIONS
- */
 
 // Get current user
 export async function getCurrentUser() {
@@ -127,6 +109,16 @@ export async function signUp(email: string, password: string, fullName: string) 
     if (profileError) throw profileError;
 
     return authData;
+}
+
+// Update password (for logged in user)
+export async function updatePassword(newPassword: string) {
+    const { data, error } = await supabase.auth.updateUser({
+        password: newPassword
+    });
+
+    if (error) throw error;
+    return data;
 }
 
 // Sign out

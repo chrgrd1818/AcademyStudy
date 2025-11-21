@@ -1,5 +1,5 @@
 <template>
-  <div>Quiz View (placeholder)</div>
+  <div>{{ $t('player.quiz.placeholder') }}</div>
 </template>
 
 <script setup lang="ts">

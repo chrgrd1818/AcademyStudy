@@ -4,7 +4,7 @@
       <div class="flex justify-between h-16">
         <div class="flex items-center">
           <router-link to="/my-courses" class="text-2xl font-bold text-blue-600">
-            QuizAcademy
+            {{ $t('brand.name') }}
           </router-link>
           <div class="ml-10 flex space-x-4">
             <router-link
@@ -12,30 +12,31 @@
               class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100 transition"
               :class="{ 'bg-gray-100 text-gray-900': $route.path === '/my-courses' }"
             >
-              My Courses
+              {{ $t('nav.myCourses') }}
             </router-link>
             <router-link
               to="/profile"
               class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100 transition"
               :class="{ 'bg-gray-100 text-gray-900': $route.path === '/profile' }"
             >
-              Profile
+              {{ $t('nav.profile') }}
             </router-link>
             <router-link
               to="/catalog"
               class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100 transition"
             >
-              Browse Courses
+              {{ $t('nav.browseCourses') }}
             </router-link>
           </div>
         </div>
         <div class="flex items-center space-x-4">
+          <LanguageSwitcher />
           <span class="text-sm text-gray-600">{{ userEmail }}</span>
           <button
             @click="handleSignOut"
             class="px-4 py-2 text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100 rounded-md transition"
           >
-            Sign Out
+            {{ $t('nav.signOut') }}
           </button>
         </div>
       </div>
@@ -47,6 +48,7 @@
 import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { supabase, signOut } from '../../shared/lib/supabase.config'
+import LanguageSwitcher from '../shared/LanguageSwitcher.vue'
 
 const router = useRouter()
 const userEmail = ref('')

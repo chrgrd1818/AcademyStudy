@@ -1,5 +1,5 @@
 <template>
-  <div>Course Detail View (placeholder)</div>
+  <div>{{ $t('player.courseDetail.placeholder') }}</div>
 </template>
 
 <script setup lang="ts">

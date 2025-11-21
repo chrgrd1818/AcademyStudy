@@ -1,0 +1,136 @@
+{
+    "common": {
+        "loading": "Chargement...",
+        "error": "Une erreur s'est produite",
+        "saving": "Enregistrement...",
+        "sending": "Envoi...",
+        "backToHome": "← Retour à l'accueil"
+    },
+    "brand": {
+        "name": "QuizAcademy"
+    },
+    "nav": {
+        "home": "Accueil",
+        "courses": "Cours",
+        "contact": "Contact",
+        "login": "Connexion",
+        "signup": "S'inscrire",
+        "myCourses": "Mes Cours",
+        "profile": "Profil",
+        "browseCourses": "Parcourir les Cours",
+        "signOut": "Déconnexion"
+    },
+    "landing": {
+        "hero": {
+            "title": "Maîtrisez de Nouvelles Compétences avec",
+            "subtitle": "Apprentissage interactif basé sur la neuro-pédagogie et la répétition espacée",
+            "ctaGetStarted": "Commencer Gratuitement",
+            "ctaBrowseCourses": "Parcourir les Cours"
+        },
+        "features": {
+            "title": "Pourquoi QuizAcademy?",
+            "smartLearning": {
+                "title": "Apprentissage Intelligent",
+                "description": "La répétition espacée garantit que vous retenez ce que vous apprenez"
+            },
+            "gamification": {
+                "title": "Gamification",
+                "description": "Gagnez de l'XP, montez de niveau et rivalisez avec votre équipe"
+            },
+            "teamLearning": {
+                "title": "Apprentissage en Équipe",
+                "description": "Rejoignez des équipes et suivez votre progression ensemble"
+            }
+        },
+        "featuredCourses": {
+            "title": "Cours en Vedette",
+            "viewAll": "Voir Tout →",
+            "noCourses": "Aucun cours disponible pour le moment. Revenez bientôt!",
+            "startLearning": "Commencer à Apprendre"
+        },
+        "cta": {
+            "title": "Prêt à Commencer à Apprendre?",
+            "subtitle": "Rejoignez des milliers d'apprenants maîtrisant de nouvelles compétences chaque jour",
+            "button": "Inscrivez-vous Maintenant - C'est Gratuit!"
+        },
+        "footer": {
+            "description": "Apprenez plus intelligemment avec des quiz interactifs et la répétition espacée.",
+            "quickLinks": "Liens Rapides",
+            "contact": "Contact",
+            "copyright": "© 2025 QuizAcademy. Tous droits réservés.",
+            "email": "support{'@'}quizacademy.com"
+        }
+    },
+    "catalog": {
+        "title": "Catalogue de Cours",
+        "searchPlaceholder": "Rechercher des cours...",
+        "noCourses": "Aucun cours trouvé.",
+        "enrollNow": "S'inscrire Maintenant"
+    },
+    "contact": {
+        "title": "Contactez-nous",
+        "form": {
+            "name": "Nom",
+            "email": "Email",
+            "message": "Message",
+            "submit": "Envoyer le Message",
+            "submitting": "Envoi..."
+        },
+        "success": "Message envoyé avec succès! Nous vous répondrons bientôt.",
+        "error": "Échec de l'envoi du message. Veuillez réessayer."
+    },
+    "auth": {
+        "login": {
+            "title": "QuizAcademy",
+            "subtitle": "Bon retour!",
+            "emailLabel": "Adresse Email",
+            "emailPlaceholder": "votre{'@'}email.com",
+            "passwordLabel": "Mot de Passe",
+            "passwordPlaceholder": "••••••••",
+            "loginButton": "Se Connecter",
+            "loggingIn": "Connexion...",
+            "noAccount": "Vous n'avez pas de compte?",
+            "signupLink": "S'inscrire",
+            "error": "Échec de la connexion. Veuillez vérifier vos identifiants."
+        },
+        "signup": {
+            "title": "QuizAcademy",
+            "subtitle": "Créez votre compte",
+            "fullNameLabel": "Nom Complet",
+            "fullNamePlaceholder": "Jean Dupont",
+            "emailLabel": "Adresse Email",
+            "emailPlaceholder": "votre{'@'}email.com",
+            "passwordLabel": "Mot de Passe",
+            "passwordPlaceholder": "••••••••",
+            "passwordHint": "Au moins 6 caractères",
+            "signupButton": "S'inscrire",
+            "creatingAccount": "Création du compte...",
+            "haveAccount": "Vous avez déjà un compte?",
+            "loginLink": "Se connecter",
+            "success": "Compte créé! Connexion en cours...",
+            "error": "Échec de la création du compte. Veuillez réessayer."
+        }
+    },
+    "player": {
+        "myCourses": {
+            "title": "Mes Cours",
+            "noEnrolled": "Aucun cours inscrit",
+            "noEnrolledDescription": "Parcourez le catalogue pour commencer.",
+            "browseCourses": "Parcourir les Cours"
+        },
+        "courseDetail": {
+            "placeholder": "Vue Détail du Cours (placeholder)"
+        },
+        "quiz": {
+            "placeholder": "Vue Quiz (placeholder)"
+        },
+        "profile": {
+            "placeholder": "Vue Profil (placeholder)"
+        }
+    },
+    "leader": {
+        "teamDashboard": {
+            "placeholder": "Tableau de Bord de l'Équipe (placeholder)"
+        }
+    }
+}

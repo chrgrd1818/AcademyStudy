@@ -18,6 +18,7 @@ import ContactView from '../views/public/ContactView.vue'
 // Auth views
 import LoginView from '../views/auth/LoginView.vue'
 import SignupView from '../views/auth/SignupView.vue'
+import ResetPasswordView from '../views/auth/ResetPasswordView.vue'
 
 // Player views
 import ProfileView from '../views/player/ProfileView.vue'
@@ -61,6 +62,12 @@ const router = createRouter({
             path: '/signup',
             name: 'signup',
             component: SignupView,
+            meta: { requiresAuth: false }
+        },
+        {
+            path: '/reset-password',
+            name: 'reset-password',
+            component: ResetPasswordView,
             meta: { requiresAuth: false }
         },
         // Player routes
