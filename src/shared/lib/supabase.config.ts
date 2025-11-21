@@ -111,6 +111,16 @@ export async function signUp(email: string, password: string, fullName: string) 
     return authData;
 }
 
+// Update password (for logged in user)
+export async function updatePassword(newPassword: string) {
+    const { data, error } = await supabase.auth.updateUser({
+        password: newPassword
+    });
+
+    if (error) throw error;
+    return data;
+}
+
 // Sign out
 export async function signOut() {
     const { error } = await supabase.auth.signOut();
