@@ -48,80 +48,84 @@ export async function uploadQuizMedia(file: File, path: string) {
             upsert: false
         });
 
-    // Get current user
-    export async function getCurrentUser() {
-        const { data: { user }, error } = await supabase.auth.getUser();
-        if (error) throw error;
-        return user;
-    }
+    if (error) throw error;
+    return data;
+}
 
-    // Get current user profile with role
-    export async function getCurrentProfile() {
-        const user = await getCurrentUser();
-        if (!user) return null;
+// Get current user
+export async function getCurrentUser() {
+    const { data: { user }, error } = await supabase.auth.getUser();
+    if (error) throw error;
+    return user;
+}
 
-        const { data, error } = await supabase
-            .from('profiles')
-            .select('*')
-            .eq('id', user.id)
-            .single();
+// Get current user profile with role
+export async function getCurrentProfile() {
+    const user = await getCurrentUser();
+    if (!user) return null;
 
-        if (error) throw error;
-        return data;
-    }
+    const { data, error } = await supabase
+        .from('profiles')
+        .select('*')
+        .eq('id', user.id)
+        .single();
 
-    // Sign in with email/password
-    export async function signIn(email: string, password: string) {
-        const { data, error } = await supabase.auth.signInWithPassword({
+    if (error) throw error;
+    return data;
+}
+
+// Sign in with email/password
+export async function signIn(email: string, password: string) {
+    const { data, error } = await supabase.auth.signInWithPassword({
+        email,
+        password
+    });
+
+    if (error) throw error;
+    return data;
+}
+
+// Sign up with email/password
+export async function signUp(email: string, password: string, fullName: string) {
+    // 1. Create auth user
+    const { data: authData, error: authError } = await supabase.auth.signUp({
+        email,
+        password
+    });
+
+    if (authError) throw authError;
+    if (!authData.user) throw new Error('No user returned from signup');
+
+    // 2. Create profile (with trigger or manual insert)
+    const { error: profileError } = await supabase
+        .from('profiles')
+        .insert({
+            id: authData.user.id,
             email,
-            password
+            full_name: fullName,
+            role: 'player' // Default role
         });
 
-        if (error) throw error;
-        return data;
-    }
+    if (profileError) throw profileError;
 
-    // Sign up with email/password
-    export async function signUp(email: string, password: string, fullName: string) {
-        // 1. Create auth user
-        const { data: authData, error: authError } = await supabase.auth.signUp({
-            email,
-            password
-        });
+    return authData;
+}
 
-        if (authError) throw authError;
-        if (!authData.user) throw new Error('No user returned from signup');
+// Sign out
+export async function signOut() {
+    const { error } = await supabase.auth.signOut();
+    if (error) throw error;
+}
 
-        // 2. Create profile (with trigger or manual insert)
-        const { error: profileError } = await supabase
-            .from('profiles')
-            .insert({
-                id: authData.user.id,
-                email,
-                full_name: fullName,
-                role: 'player' // Default role
-            });
+// Sign in with Google
+export async function signInWithGoogle() {
+    const { data, error } = await supabase.auth.signInWithOAuth({
+        provider: 'google',
+        options: {
+            redirectTo: `${window.location.origin}/auth/callback`
+        }
+    });
 
-        if (profileError) throw profileError;
-
-        return authData;
-    }
-
-    // Sign out
-    export async function signOut() {
-        const { error } = await supabase.auth.signOut();
-        if (error) throw error;
-    }
-
-    // Sign in with Google
-    export async function signInWithGoogle() {
-        const { data, error } = await supabase.auth.signInWithOAuth({
-            provider: 'google',
-            options: {
-                redirectTo: `${window.location.origin}/auth/callback`
-            }
-        });
-
-        if (error) throw error;
-        return data;
-    }
+    if (error) throw error;
+    return data;
+}

@@ -3,7 +3,7 @@
     <PublicNav />
     <div class="min-h-screen bg-gray-50 py-12">
       <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h1 class="text-3xl font-bold text-gray-900 mb-8">Contact Us</h1>
+        <h1 class="text-3xl font-bold text-gray-900 mb-8">{{ $t('contact.title') }}</h1>
         
         <div class="bg-white rounded-lg shadow-md p-8">
           <form @submit.prevent="handleSubmit" class="space-y-6">
@@ -17,7 +17,7 @@
 
             <div>
               <label for="name" class="block text-sm font-medium text-gray-700 mb-2">
-                Name
+                {{ $t('contact.form.name') }}
               </label>
               <input
                 id="name"
@@ -30,7 +30,7 @@
 
             <div>
               <label for="email" class="block text-sm font-medium text-gray-700 mb-2">
-                Email
+                {{ $t('contact.form.email') }}
               </label>
               <input
                 id="email"
@@ -43,7 +43,7 @@
 
             <div>
               <label for="message" class="block text-sm font-medium text-gray-700 mb-2">
-                Message
+                {{ $t('contact.form.message') }}
               </label>
               <textarea
                 id="message"
@@ -59,7 +59,7 @@
               :disabled="loading"
               class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg transition disabled:opacity-50"
             >
-              {{ loading ? 'Sending...' : 'Send Message' }}
+              {{ loading ? $t('contact.form.submitting') : $t('contact.form.submit') }}
             </button>
           </form>
         </div>
@@ -70,8 +70,11 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import { useI18n } from 'vue-i18n'
 import { supabase } from '../../shared/lib/supabase.config'
 import PublicNav from '../../components/public/PublicNav.vue'
+
+const { t } = useI18n()
 
 const form = ref({
   name: '',
@@ -95,10 +98,10 @@ const handleSubmit = async () => {
 
     if (submitError) throw submitError
 
-    success.value = 'Message sent successfully! We\'ll get back to you soon.'
+    success.value = t('contact.success')
     form.value = { name: '', email: '', message: '' }
   } catch (err: any) {
-    error.value = 'Failed to send message. Please try again.'
+    error.value = t('contact.error')
   } finally {
     loading.value = false
   }

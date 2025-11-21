@@ -4,9 +4,9 @@
       <!-- Logo/Title -->
       <div class="text-center mb-8">
         <router-link to="/" class="inline-block">
-          <h1 class="text-3xl font-bold text-gray-800">QuizAcademy</h1>
+          <h1 class="text-3xl font-bold text-gray-800">{{ $t('auth.signup.title') }}</h1>
         </router-link>
-        <p class="text-gray-600 mt-2">Create your account</p>
+        <p class="text-gray-600 mt-2">{{ $t('auth.signup.subtitle') }}</p>
       </div>
 
       <!-- Signup Form -->
@@ -21,7 +21,7 @@
 
         <div>
           <label for="fullName" class="block text-sm font-medium text-gray-700 mb-2">
-            Full Name
+            {{ $t('auth.signup.fullNameLabel') }}
           </label>
           <input
             id="fullName"
@@ -29,13 +29,13 @@
             type="text"
             required
             class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition text-gray-900"
-            placeholder="John Doe"
+            :placeholder="$t('auth.signup.fullNamePlaceholder')"
           />
         </div>
 
         <div>
           <label for="email" class="block text-sm font-medium text-gray-700 mb-2">
-            Email Address
+            {{ $t('auth.signup.emailLabel') }}
           </label>
           <input
             id="email"
@@ -43,13 +43,13 @@
             type="email"
             required
             class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition text-gray-900"
-            placeholder="your@email.com"
+            :placeholder="$t('auth.signup.emailPlaceholder')"
           />
         </div>
 
         <div>
           <label for="password" class="block text-sm font-medium text-gray-700 mb-2">
-            Password
+            {{ $t('auth.signup.passwordLabel') }}
           </label>
           <input
             id="password"
@@ -58,9 +58,9 @@
             required
             minlength="6"
             class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition text-gray-900"
-            placeholder="••••••••"
+            :placeholder="$t('auth.signup.passwordPlaceholder')"
           />
-          <p class="text-xs text-gray-500 mt-1">At least 6 characters</p>
+          <p class="text-xs text-gray-500 mt-1">{{ $t('auth.signup.passwordHint') }}</p>
         </div>
 
         <button
@@ -68,22 +68,22 @@
           :disabled="loading"
           class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg transition duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          {{ loading ? 'Creating account...' : 'Sign Up' }}
+          {{ loading ? $t('auth.signup.creatingAccount') : $t('auth.signup.signupButton') }}
         </button>
       </form>
 
       <div class="mt-6 text-center">
         <p class="text-sm text-gray-600">
-          Already have an account?
+          {{ $t('auth.signup.haveAccount') }}
           <router-link to="/login" class="text-blue-600 hover:text-blue-700 font-medium">
-            Log in
+            {{ $t('auth.signup.loginLink') }}
           </router-link>
         </p>
       </div>
 
       <div class="mt-4 text-center">
         <router-link to="/" class="text-sm text-gray-500 hover:text-gray-700">
-          ← Back to home
+          {{ $t('common.backToHome') }}
         </router-link>
       </div>
     </div>
@@ -93,9 +93,11 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
+import { useI18n } from 'vue-i18n'
 import { signUp } from '../../shared/lib/supabase.config'
 
 const router = useRouter()
+const { t } = useI18n()
 
 const fullName = ref('')
 const email = ref('')
@@ -111,14 +113,14 @@ const handleSignup = async () => {
 
   try {
     await signUp(email.value, password.value, fullName.value)
-    success.value = 'Account created! Signing you in...'
+    success.value = t('auth.signup.success')
     
     // Redirect to my courses after a short delay
     setTimeout(() => {
       router.push('/my-courses')
     }, 1500)
   } catch (err: any) {
-    error.value = err.message || 'Failed to create account. Please try again.'
+    error.value = err.message || t('auth.signup.error')
   } finally {
     loading.value = false
   }

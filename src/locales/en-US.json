@@ -1,0 +1,136 @@
+{
+    "common": {
+        "loading": "Loading...",
+        "error": "An error occurred",
+        "saving": "Saving...",
+        "sending": "Sending...",
+        "backToHome": "← Back to home"
+    },
+    "brand": {
+        "name": "QuizAcademy"
+    },
+    "nav": {
+        "home": "Home",
+        "courses": "Courses",
+        "contact": "Contact",
+        "login": "Login",
+        "signup": "Sign Up",
+        "myCourses": "My Courses",
+        "profile": "Profile",
+        "browseCourses": "Browse Courses",
+        "signOut": "Sign Out"
+    },
+    "landing": {
+        "hero": {
+            "title": "Master New Skills with",
+            "subtitle": "Interactive learning powered by neuro-pedagogy and spaced repetition",
+            "ctaGetStarted": "Get Started Free",
+            "ctaBrowseCourses": "Browse Courses"
+        },
+        "features": {
+            "title": "Why QuizAcademy?",
+            "smartLearning": {
+                "title": "Smart Learning",
+                "description": "Spaced repetition ensures you remember what you learn"
+            },
+            "gamification": {
+                "title": "Gamification",
+                "description": "Earn XP, level up, and compete with your team"
+            },
+            "teamLearning": {
+                "title": "Team Learning",
+                "description": "Join teams and track progress together"
+            }
+        },
+        "featuredCourses": {
+            "title": "Featured Courses",
+            "viewAll": "View All →",
+            "noCourses": "No courses available yet. Check back soon!",
+            "startLearning": "Start Learning"
+        },
+        "cta": {
+            "title": "Ready to Start Learning?",
+            "subtitle": "Join thousands of learners mastering new skills every day",
+            "button": "Sign Up Now - It's Free!"
+        },
+        "footer": {
+            "description": "Learn smarter with interactive quizzes and spaced repetition.",
+            "quickLinks": "Quick Links",
+            "contact": "Contact",
+            "copyright": "© 2025 QuizAcademy. All rights reserved.",
+            "email": "support{'@'}quizacademy.com"
+        }
+    },
+    "catalog": {
+        "title": "Course Catalog",
+        "searchPlaceholder": "Search courses...",
+        "noCourses": "No courses found.",
+        "enrollNow": "Enroll Now"
+    },
+    "contact": {
+        "title": "Contact Us",
+        "form": {
+            "name": "Name",
+            "email": "Email",
+            "message": "Message",
+            "submit": "Send Message",
+            "submitting": "Sending..."
+        },
+        "success": "Message sent successfully! We'll get back to you soon.",
+        "error": "Failed to send message. Please try again."
+    },
+    "auth": {
+        "login": {
+            "title": "QuizAcademy",
+            "subtitle": "Welcome back!",
+            "emailLabel": "Email Address",
+            "emailPlaceholder": "your{'@'}email.com",
+            "passwordLabel": "Password",
+            "passwordPlaceholder": "••••••••",
+            "loginButton": "Sign In",
+            "loggingIn": "Signing in...",
+            "noAccount": "Don't have an account?",
+            "signupLink": "Sign up",
+            "error": "Failed to sign in. Please check your credentials."
+        },
+        "signup": {
+            "title": "QuizAcademy",
+            "subtitle": "Create your account",
+            "fullNameLabel": "Full Name",
+            "fullNamePlaceholder": "John Doe",
+            "emailLabel": "Email Address",
+            "emailPlaceholder": "your{'@'}email.com",
+            "passwordLabel": "Password",
+            "passwordPlaceholder": "••••••••",
+            "passwordHint": "At least 6 characters",
+            "signupButton": "Sign Up",
+            "creatingAccount": "Creating account...",
+            "haveAccount": "Already have an account?",
+            "loginLink": "Log in",
+            "success": "Account created! Signing you in...",
+            "error": "Failed to create account. Please try again."
+        }
+    },
+    "player": {
+        "myCourses": {
+            "title": "My Courses",
+            "noEnrolled": "No enrolled courses",
+            "noEnrolledDescription": "Browse the catalog to get started.",
+            "browseCourses": "Browse Courses"
+        },
+        "courseDetail": {
+            "placeholder": "Course Detail View (placeholder)"
+        },
+        "quiz": {
+            "placeholder": "Quiz View (placeholder)"
+        },
+        "profile": {
+            "placeholder": "Profile View (placeholder)"
+        }
+    },
+    "leader": {
+        "teamDashboard": {
+            "placeholder": "Team Dashboard (placeholder)"
+        }
+    }
+}
